@@ -181,9 +181,12 @@ export class SailsService {
           console.log("get:jwr", jwres)
         }
         if (jwres.statusCode < 200 || jwres.statusCode >= 400) {
-          subject.error(jwres.error)
+          subject.error({error: jwres.error, statusCode: jwres.statusCode})
         } else {
-          this.zone.run(() => subject.next(resData));
+          this.zone.run(() => subject.next({
+            response: jwres,
+            data: resData
+          }));
         }
 
         subject.complete();
@@ -212,10 +215,12 @@ export class SailsService {
         }
 
         if (jwres.statusCode < 200 || jwres.statusCode >= 400) {
-          subject.error(jwres.error)
+          subject.error({error: jwres.error, statusCode: jwres.statusCode})
         } else {
-          this.zone.run(() => subject.next(resData));
-
+          this.zone.run(() => subject.next({
+            response: jwres,
+            data: resData
+          }));
         }
 
         subject.complete();
@@ -243,10 +248,12 @@ export class SailsService {
         }
 
         if (jwres.statusCode < 200 || jwres.statusCode >= 400) {
-          subject.error(jwres.error)
+          subject.error({error: jwres.error, statusCode: jwres.statusCode})
         } else {
-          //subject.next(resData);
-          this.zone.run(() => subject.next(resData));
+          this.zone.run(() => subject.next({
+            response: jwres,
+            data: resData
+          }));
         }
 
         subject.complete();
@@ -277,10 +284,12 @@ export class SailsService {
         }
 
         if (jwres.statusCode < 200 || jwres.statusCode >= 400) {
-          subject.error(jwres.error)
+          subject.error({error: jwres.error, statusCode: jwres.statusCode})
         } else {
-          //subject.next(resData);
-          this.zone.run(() => subject.next(resData));
+          this.zone.run(() => subject.next({
+            response: jwres,
+            data: resData
+          }));
         }
 
         subject.complete();
